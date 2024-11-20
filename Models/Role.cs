@@ -15,7 +15,7 @@ namespace template_dotnet.Models
         public string? Description { get; set; }
 
         // Navigation property for the users in this role
-        public ICollection<UserAccount> Users { get; set; } = new List<UserAccount>();
+        public ICollection<UserAccount> Users { get; set; } = [];
     }
 
 }

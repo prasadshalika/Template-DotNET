@@ -48,15 +48,23 @@ namespace template_dotnet.Services
             if (role == null)
                 throw new ArgumentException("Invalid RoleId");
 
-            var userAccount = new UserAccount
+            if (string.IsNullOrWhiteSpace(createUserDto.UserName) || string.IsNullOrWhiteSpace(createUserDto.Password))
             {
-                UserName = createUserDto.UserName,
-                Password = HashPassword(createUserDto.Password),
-                RestoredPassword = createUserDto.RestoredPassword,
-                FirstName = createUserDto.FirstName,
-                LastName = createUserDto.LastName,
-                Role = role
-            };
+                throw new ArgumentException("Username and Password are required.");
+            }
+
+            // Hash the password (ensure `HashPassword` is working properly)
+            string hashedPassword = HashPassword(createUserDto.Password);
+
+            // Initialize UserAccount with non-null values
+            var userAccount = new UserAccount(
+                createUserDto.UserName,                       // Assuming this is required
+                hashedPassword,                               // Ensure it's hashed properly
+                createUserDto.RestoredPassword ?? string.Empty, // If it's optional, use an empty string
+                createUserDto.FirstName ?? string.Empty,      // If optional, default to empty string
+                createUserDto.LastName ?? string.Empty,       // If optional, default to empty string
+                role                                          // Ensure `role` is a valid `Role` object
+            );
 
             await _userRepository.AddUserAsync(userAccount);
 

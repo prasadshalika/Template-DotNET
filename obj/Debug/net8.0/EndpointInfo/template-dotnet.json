@@ -451,7 +451,6 @@
           "id",
           "isDeleted",
           "lastName",
-          "role",
           "roleId",
           "userName"
         ],

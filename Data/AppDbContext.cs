@@ -3,8 +3,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace template_dotnet.Data
 {
-    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+    public class AppDbContext : DbContext
     {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
+
         public required DbSet<UserAccount> UserAccounts { get; set; }
         public required DbSet<Role> Roles { get; set; } // Add Roles DbSet
 

@@ -2,16 +2,17 @@
 using template_dotnet.Data;
 using template_dotnet.DTOs;
 using template_dotnet.Models;
+using template_dotnet.Repositories;
 
 namespace template_dotnet.Services
 {
     public class RoleService : IRoleService
     {
-        private readonly AppDbContext _context;
+        private readonly IRoleRepository _roleRepository;
 
-        public RoleService(AppDbContext context)
+        public RoleService(IRoleRepository roleRepository)
         {
-            _context = context;
+            _roleRepository = roleRepository;
         }
 
         public async Task<Role> CreateRoleAsync(RoleDto roleDto)
@@ -24,44 +25,26 @@ namespace template_dotnet.Services
                 IsDeleted = false
             };
 
-            _context.Roles.Add(role);
-            await _context.SaveChangesAsync();
-
-            return role;
+            return await _roleRepository.CreateRoleAsync(role);
         }
 
         public async Task<bool> DeleteRoleAsync(long roleId)
         {
-            var role = await _context.Roles.FindAsync(roleId);
-            if (role == null)
-                return false;
-
-            _context.Roles.Remove(role);
-            await _context.SaveChangesAsync();
-
-            return true;
+            return await _roleRepository.DeleteRoleAsync(roleId);
         }
 
         public async Task<IEnumerable<Role>> GetAllRolesAsync()
         {
-            var roles = await _context.Roles.ToListAsync();
-
-            // Ensure roles are never null
-            return roles;
+            return await _roleRepository.GetAllRolesAsync();
         }
 
         public async Task<Role> GetRoleByIdAsync(long roleId)
         {
-            var role = await _context.Roles
-                .Include(r => r.Users) // Include related users, if necessary
-                .FirstOrDefaultAsync(r => r.Id == roleId);
-
+            var role = await _roleRepository.GetRoleByIdAsync(roleId);
             if (role == null)
             {
-                // Handle the case where the role is not found (you can throw an exception or return null)
                 throw new KeyNotFoundException($"Role with ID {roleId} not found.");
             }
-
             return role;
         }
 

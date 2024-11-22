@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2aWjOT3ic7k=",
+  "dgSpecHash": "RPxWVTe7Gg8=",
   "success": true,
-  "projectFilePath": "D:\\Projects\\template-dotnet\\template-dotnet.csproj",
+  "projectFilePath": "D:\\Projects\\template-dotnet-dir\\template-dotnet\\template-dotnet.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\shali\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\shali\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",

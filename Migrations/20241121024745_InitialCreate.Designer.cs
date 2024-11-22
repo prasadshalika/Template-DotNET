@@ -12,7 +12,7 @@ using template_dotnet.Data;
 namespace template_dotnet.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241119170439_InitialCreate")]
+    [Migration("20241121024745_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -38,6 +38,11 @@ namespace template_dotnet.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_date");
 
+                    b.Property<string>("Description")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("description");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean")
                         .HasColumnName("is_deleted");
@@ -46,7 +51,7 @@ namespace template_dotnet.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
-                        .HasColumnName("role_name");
+                        .HasColumnName("name");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("timestamp with time zone")

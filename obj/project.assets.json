@@ -3419,11 +3419,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\template-dotnet\\template-dotnet.csproj",
+      "projectUniqueName": "D:\\Projects\\template-dotnet-dir\\template-dotnet\\template-dotnet.csproj",
       "projectName": "template-dotnet",
-      "projectPath": "D:\\Projects\\template-dotnet\\template-dotnet.csproj",
+      "projectPath": "D:\\Projects\\template-dotnet-dir\\template-dotnet\\template-dotnet.csproj",
       "packagesPath": "C:\\Users\\shali\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\template-dotnet\\obj\\",
+      "outputPath": "D:\\Projects\\template-dotnet-dir\\template-dotnet\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

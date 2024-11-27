@@ -1,31 +1,25 @@
-# This stage is used when running from VS in fast mode (Default for Debug configuration)
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["template-dotnet.csproj", "."]
+WORKDIR ./app
+
+# Expose the port your application will run on
+EXPOSE 80
+EXPOSE 443
+
+# Copy the project file and restore any dependencies (use .csproj for the project name)
+COPY ["*.csproj", "./"]
 RUN dotnet restore "./template-dotnet.csproj"
-COPY . . 
-WORKDIR "/src/."
-RUN dotnet build "./template-dotnet.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# This stage is used to publish the service project to be copied to the final stage
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./template-dotnet.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+# Copy the rest of the application code
+COPY . ./
 
-# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
-FROM base AS final
+# Publish the application
+RUN dotnet publish -c Release -o out
+
+# Build the runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
+COPY --from=build /app/out .
 
-# Copy the application files from the publish stage to the final container
-COPY --from=publish /app/publish .
-
-# Apply migrations before running the app
-ENTRYPOINT ["dotnet", "template-dotnet.dll"]
+# Start the application
+ENTRYPOINT ["dotnet", "template-dotnet.dll", "--environment = Development"]

@@ -1,0 +1,16 @@
+﻿version: '3.8'
+
+services:
+  templatedotnetapp:
+    container_name: template-dotnet-service
+    image: my-template-dotnet
+    build: ./
+    ports:
+      - "5051:8080"
+      - "5052:443"
+    networks:
+      - casat-network
+
+networks:
+  casat-network: 
+    external: true

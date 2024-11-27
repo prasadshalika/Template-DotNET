@@ -269,7 +269,6 @@ D:\Projects\template-dotnet-dir\template-dotnet\obj\Debug\net8.0\staticwebassets
 D:\Projects\template-dotnet-dir\template-dotnet\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.template-dotnet.props
 D:\Projects\template-dotnet-dir\template-dotnet\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.template-dotnet.props
 D:\Projects\template-dotnet-dir\template-dotnet\obj\Debug\net8.0\staticwebassets.pack.json
-D:\Projects\template-dotnet-dir\template-dotnet\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\Projects\template-dotnet-dir\template-dotnet\obj\Debug\net8.0\template.333D1C12.Up2Date
 D:\Projects\template-dotnet-dir\template-dotnet\obj\Debug\net8.0\template-dotnet.dll
 D:\Projects\template-dotnet-dir\template-dotnet\obj\Debug\net8.0\refint\template-dotnet.dll
